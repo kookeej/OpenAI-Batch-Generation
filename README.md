@@ -16,6 +16,6 @@ python call_openai_batch.py --api_key $API_KEY\
 API_KEY=YOUR_API_KEY
 FID=FID_FROM_CONFIG_FILE # (./config/openai_batch_config.jsonl)
 
-python call_openai_batch.py --api_key $API_KEY\
+python save_process_output.py --api_key $API_KEY\
                             --fid $FID
 ```

@@ -2,4 +2,6 @@
 *.sh
 *.jsonl
 outputs/
-notebook/
+.env
+*.sh
+notebook/custom_formatting.ipynb

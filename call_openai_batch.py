@@ -7,6 +7,7 @@ import logging
 from typing import Dict
 from pathlib import Path
 from openai import OpenAI
+from dotenv import load_dotenv
 
 class QueryGenerator:
     def __init__(self, api_key: str) -> None:
@@ -77,7 +78,6 @@ def setup_logging():
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--api_key', type=str, required=True)
     parser.add_argument('--data', type=str, required=True)
     parser.add_argument('--version', type=str, required=True)
     parser.add_argument('--input_file_path', type=str, default='')
@@ -85,8 +85,11 @@ def main():
     args = parser.parse_args()
     config_file_path = Path('config') / 'openai_batch_config.jsonl'
 
+    load_dotenv()
+    api_key = os.getenv('OPENAI_API_KEY')
+
     try:
-        generator = QueryGenerator(api_key=args.api_key)
+        generator = QueryGenerator(api_key=api_key)
     except Exception as e:
         logging.error(f"Failed to initialize QueryGenerator: {e}")
         return
